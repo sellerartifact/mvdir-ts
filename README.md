@@ -1,46 +1,51 @@
-# Modern.js Package
+# mvdir-ts
 
-## Setup
+This is a fork of [mvdir](https://github.com/m-ahmadi/mvdir) that has been converted to `typescript`.
 
-Install the dependencies:
+## Why?
 
-```bash
-pnpm run install
+I did this: `npm i mv`,
+then I saw this: `+ mv@2.1.1 added 15 packages`,
+then I said no.
+
+It first tries `fs.rename()`, then falls back on `fs.copyFile()` and `fs.unlink()`.
+
+## Usage:
+
+```javascript
+const mvdir = require('mvdir');
+
+await mvdir('source/file.js', 'dest/file.js'); // move file.
+await mvdir('source/file.js', 'dest/'); // move file. (same as above if dest directory already exists)
+await mvdir('source', 'dest'); // move directory.
+await mvdir('source', 'a/b/c/dest'); // creating necessary dirs.
+await mvdir('file.js', 'D:\\file.js'); // move across drives/partitions.
+
+// returns undefined if successful, or an error object:
+const err = await mvdir('source/file.js', 'dest/file.js');
+if (!err) console.log('done.');
+
+mvdir('source/file.js', 'dest/file.js').then(err => {
+  if (!err) console.log('done.');
+});
 ```
 
-## Get Started
+### Copying:
 
-Run and debug the module:
-
-```bash
-pnpm run dev
+```javascript
+await mvdir('file1.js', 'file2.js', { copy: true });
+await mvdir('dir1', 'dir2', { copy: true });
 ```
 
-Run test cases:
+### Don't overwrite:
 
-```bash
-pnpm run test
+```javascript
+await mvdir('file1.js', 'file2.js', { overwrite: false }); // error if file2.js already exists.
+await mvdir('dir1', 'dir2', { overwrite: false }); // error if dir2     already exists.
 ```
 
-Build the module for production:
+### Don't log errors:
 
-```bash
-pnpm run build
+```javascript
+await mvdir('dir1', 'dir2', { log: false });
 ```
-
-Enable optional features:
-
-```bash
-pnpm run new
-```
-
-Other commands:
-
-```bash
-pnpm run lint         # Lint and fix source files
-pnpm run change       # Add a new changeset
-pnpm run bump         # Update version and changelog via changeset
-pnpm run release      # Release the package
-```
-
-For more information, see the [Modern.js Module documentation](https://modernjs.dev/module-tools/en).
