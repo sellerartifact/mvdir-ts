@@ -8,7 +8,7 @@
   "author": "wangjue666",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/users/wangjue666/mvdir-ts.git"
+    "url": "https://github.com/sellerartifact/mvdir-ts"
   },
   "scripts": {
     "prepare": "modern build && husky install",
