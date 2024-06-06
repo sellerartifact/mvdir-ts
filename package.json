@@ -1,7 +1,7 @@
 {
   "name": "mvdir-ts",
   "version": "1.0.22",
-  "description": "ts version of mvdir. Move or copy files and directories. (async, recursive, across devices, copy & delete fallback, minimalistic with 0 dependencies)",
+  "description": "TS version of mvdir. Move or copy files and directories. (async, recursive, across devices, copy & delete fallback, minimalistic with 0 dependencies)",
   "types": "./dist/types/index.d.ts",
   "main": "./dist/lib/index.js",
   "module": "./dist/es/index.js",
